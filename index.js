@@ -3,6 +3,7 @@ const app = express();
 const path = require("path");
 
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'dist')))
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -34,3 +35,4 @@ app.get('/dashboard', function(req, res) {
 
 app.listen(8080);
 console.log('server is running on http://localhost:8080');
+// module.exports = app;
