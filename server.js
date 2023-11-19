@@ -13,24 +13,24 @@ app.get('/', function(req, res) {
     // email: "jonn@doe.com",
   };
   
-  res.render('pages/index', {user: user});
+  res.render('pages/index.ejs', {user: user});
 });
 
 app.get('/login', function(req, res) {
-  res.render('pages/login', {register: false});
+  res.render('pages/login.ejs', {register: false});
 });
 
 app.get('/register', function(req, res) {
-  res.render('pages/login', {register: true});
+  res.render('pages/login.ejs', {register: true});
 });
 
 app.get('/try-premium', function(req, res) {
-  res.render('pages/try-premium');
+  res.render('pages/try-premium.ejs');
 });
 
 // TODO: remove this route
 app.get('/dashboard', function(req, res) {
-  res.render('pages/dashboard');
+  res.render('pages/dashboard.ejs');
 });
 
 app.listen(8080);
