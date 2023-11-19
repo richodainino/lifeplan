@@ -34,5 +34,4 @@ app.get('/dashboard', function(req, res) {
 });
 
 app.listen(8080);
-console.log('server is running on http://localhost:8080');
-// module.exports = app;
+console.log('8080 is the magic port');
