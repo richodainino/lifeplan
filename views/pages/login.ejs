@@ -7,21 +7,41 @@
 
 <body>
 
-  <header>
-    <%- include('../partials/header.ejs') %>
-  </header>
+  <%- include('../partials/header.ejs') %>
 
   <main>
     <!-- Hero -->
-    <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary pt-16">
+    <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary">
       <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/landing-bg.png);"></div>
       <div class="hero-content flex-col px-12 py-16">
         <div class="card shrink-0 w-96 shadow-2xl bg-base-100">
-          <% if (register) { %>
-            <%- include('../partials/register-form.ejs') %>
-          <% } else { %>
-            <%- include('../partials/login-form.ejs') %>
+          <% if (flash) { %>
+            <%- include('../partials/flash.ejs', {flash: flash}) %>
           <% } %>
+          <form class="card-body py-6" method="post">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Email</span>
+              </label>
+              <input name="email" type="email" placeholder="john@doe.com" class="input input-bordered" required />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text">Password</span>
+              </label>
+              <input name="password" type="password" placeholder="password" class="input input-bordered" required />
+              <label class="label">
+                <a href="#forgot-password" class="label-text-alt link link-hover">Forgot your password?</a>
+              </label>
+            </div>
+            <div class="form-control mt-6">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <label class="label">
+                <p>Don't have an account? Register <a href="/register"
+                    class="label-text-alt link link-primary text-base">here</a>!</p>
+              </label>
+            </div>
+          </form>
         </div>
       </div>
     </div>

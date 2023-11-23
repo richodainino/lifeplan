@@ -7,111 +7,104 @@
 
 <body>
 
-  <header>
-    <%- include('../partials/header.ejs') %>
-  </header>
+  <%- include('../partials/header.ejs') %>
 
   <main>
-    <% if (Object.keys(user).length !==0) { %>
-      <h1 class="pt-16">
-        hello <%= user.name %>
-      </h1>
-      <% } else { %>
-        <div>
-          <!-- Hero -->
-          <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary pt-10">
-            <div style="background-image: url(/images/landing-bg.png);"
-              class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover"></div>
-            <div class="hero-content flex-col lg:flex-row-reverse">
-              <img src="/images/landing-image.png" class="max-w-xl" />
-              <div class="max-w-md text-white">
-                <h1 class="text-5xl font-bold">LIFE PLAN</h1>
-                <p class="py-6 ">The best way to ensure you're living the best time of your life and stress free. Start
-                  with a plan for your life with
-                  LIFE PLAN, your time in our hand.</p>
-                <a href="/login" class="btn btn-primary">Login</a>
-                <a href="/register" class="btn btn-outline btn-secondary">Register</a>
-              </div>
-              <div id="faq" class="absolute bottom-14 left-0"></div>
-            </div>
+    <div>
+      <!-- Hero -->
+      <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary">
+        <div style="background-image: url(/images/landing-bg.png);"
+          class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover"></div>
+        <div class="hero-content flex-col lg:flex-row-reverse">
+          <img src="/images/landing-image.png" class="max-w-xl" />
+          <div class="max-w-md text-white">
+            <h1 class="text-5xl font-bold">LIFE PLAN</h1>
+            <p class="py-6 ">The best way to ensure you're living the best time of your life and stress free. Start
+              with a plan for your life with
+              LIFE PLAN, your time in our hand.</p>
+            <a href="/login" class="btn btn-primary">Login</a>
+            <a href="/register" class="btn btn-outline btn-secondary">Register</a>
           </div>
+        </div>
+      </div>
+      
+      <!-- FAQ -->
+      <div class="flex justify-center py-16 relative">
+        <div id="faq" class="absolute -top-16"></div>
+        <div class="flex flex-col max-w-xl">
+          <h2 class="m-10 mt-0 text-4xl font-bold text-center text-primary">
+            Frequently Asked Questions
+          </h2>
 
-          <!-- FAQ -->
-          <div class="flex justify-center py-16">
-            <div class="flex flex-col max-w-xl">
-              <h2 class="m-10 mt-0 text-4xl font-bold text-center text-primary">
-                Frequently Asked Questions
-              </h2>
-
-              <div class="space-y-4">
-                <div class="collapse collapse-arrow border border-base-300 bg-primary">
-                  <input type="checkbox">
-                  <div class="collapse-title text-xl font-medium">
-                    What services does LIFE PLAN offer?
-                  </div>
-                  <div class="collapse-content">
-                    <p>LIFE PLAN offers services with easy operation, fast results, guaranteed safety, and planning the
-                      right one.</p>
-                  </div>
-                </div>
-
-                <div class="collapse collapse-arrow border border-base-300 bg-primary">
-                  <input type="checkbox">
-                  <div class="collapse-title text-xl font-medium">
-                    How do I use LIFE PLAN?
-                  </div>
-                  <div class="collapse-content">
-                    <p>Open LIFE PLAN website, press the Start Planning button, enter an activity plan, enter weights
-                      assessment of
-                      activities, press the Start Calculate button, the results of the sequence of activities that
-                      should be The work is done.</p>
-                  </div>
-                </div>
-
-                <div class="collapse collapse-arrow border border-base-300 bg-primary">
-                  <input type="checkbox">
-                  <div class="collapse-title text-xl font-medium">
-                    How does LIFE PLAN work?
-                  </div>
-                  <div class="collapse-content">
-                    <p>Based on the weight of the assessment given, LIFE PLAN will calculate in real time to produce an
-                      activity plan in
-                      accordance with the level of importance.</p>
-                  </div>
-                </div>
-
-                <div class="collapse collapse-arrow border border-base-300 bg-primary">
-                  <input type="checkbox">
-                  <div class="collapse-title text-xl font-medium">
-                    Can I use LIFE PLAN for free?
-                  </div>
-                  <div class="collapse-content">
-                    <p>LIFE PLAN is free to use, but premium users can access All features are unlimited.</p>
-                  </div>
-                </div>
+          <div class="space-y-4">
+            <div class="collapse collapse-arrow border border-base-300 bg-primary">
+              <input type="checkbox">
+              <div class="collapse-title text-xl font-medium">
+                What services does LIFE PLAN offer?
+              </div>
+              <div class="collapse-content">
+                <p>LIFE PLAN offers services with easy operation, fast results, guaranteed safety, and planning the
+                  right one.</p>
               </div>
             </div>
-          </div>
 
-          <!-- About Us -->
-          <div id="about" class="hero min-h-screen bg-secondary">
-            <div style="background-image: url(/images/study-pattern.png);" class="hero-overlay mix-blend-multiply opacity-10 bg-repeat"></div>
-            <div class="hero-content flex-col lg:flex-row space-x-4">
-              <img src="/images/life-plan-full-logo.png" class="w-64" />
-              <div class="max-w-lg">
-                <h1 class="text-4xl font-bold">About Us</h1>
-                <p class="py-6">We are four ITS students who have a vision to help fellow students in managing their
-                  academic schedule, assignments, and
-                  other activities. We realize that many students struggle with managing their time and priorities,
-                  resulting in stress
-                  and fatigue. Therefore, we created a website that can easily schedule, flexible, and efficient. We
-                  hope our website can benefit
-                  everyone especially students, in improving their productivity and well-being.</p>
+            <div class="collapse collapse-arrow border border-base-300 bg-primary">
+              <input type="checkbox">
+              <div class="collapse-title text-xl font-medium">
+                How do I use LIFE PLAN?
+              </div>
+              <div class="collapse-content">
+                <p>Open LIFE PLAN website, press the Start Planning button, enter an activity plan, enter weights
+                  assessment of
+                  activities, press the Start Calculate button, the results of the sequence of activities that
+                  should be The work is done.</p>
+              </div>
+            </div>
+
+            <div class="collapse collapse-arrow border border-base-300 bg-primary">
+              <input type="checkbox">
+              <div class="collapse-title text-xl font-medium">
+                How does LIFE PLAN work?
+              </div>
+              <div class="collapse-content">
+                <p>Based on the weight of the assessment given, LIFE PLAN will calculate in real time to produce an
+                  activity plan in
+                  accordance with the level of importance.</p>
+              </div>
+            </div>
+
+            <div class="collapse collapse-arrow border border-base-300 bg-primary">
+              <input type="checkbox">
+              <div class="collapse-title text-xl font-medium">
+                Can I use LIFE PLAN for free?
+              </div>
+              <div class="collapse-content">
+                <p>LIFE PLAN is free to use, but premium users can access All features are unlimited.</p>
               </div>
             </div>
           </div>
         </div>
-        <% } %>
+      </div>
+      
+      <!-- About Us -->
+      <div class="hero min-h-[calc(100vh-4rem)] bg-secondary relative">
+        <div id="about" class="absolute -top-16"></div>
+        <div style="background-image: url(/images/study-pattern.png);" class="hero-overlay mix-blend-multiply opacity-10 bg-repeat"></div>
+        <div class="hero-content flex-col lg:flex-row space-x-4">
+          <img src="/images/life-plan-full-logo.png" class="w-64" />
+          <div class="max-w-lg">
+            <h1 class="text-4xl font-bold">About Us</h1>
+            <p class="py-6">We are four ITS students who have a vision to help fellow students in managing their
+              academic schedule, assignments, and
+              other activities. We realize that many students struggle with managing their time and priorities,
+              resulting in stress
+              and fatigue. Therefore, we created a website that can easily schedule, flexible, and efficient. We
+              hope our website can benefit
+              everyone especially students, in improving their productivity and well-being.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
   <footer>
