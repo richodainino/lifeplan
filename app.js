@@ -9,13 +9,13 @@ const config = require('./config')
 const routes = require('./app/routes')
 
 const db = require('./app/models')
-db.sequelize.sync({ force: false })
-  .then(() => {
-    console.log('Database is connected')
-  })
-  .catch((err) => {
-    console.log('Failed connecting to database: ' + err.message)
-  })
+// db.sequelize.sync({ force: true })
+//   .then(() => {
+//     console.log('Database is connected')
+//   })
+//   .catch((err) => {
+//     console.log('Failed connecting to database: ' + err.message)
+//   })
 
 app.use(session({
   secret: config.sessionSecret,

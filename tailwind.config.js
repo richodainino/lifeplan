@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./views/**/*.ejs"],
+  safelist: [
+    {
+      pattern: /alert-(warning|success|error|info)/,
+    }
+  ],
   daisyui: {
     themes: [
       {

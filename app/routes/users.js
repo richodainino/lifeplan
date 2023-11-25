@@ -6,7 +6,8 @@ const {
 } = require('../controllers/view')
 const { 
   login,
-  register
+  register,
+  logout
 } = require('../controllers/users')
 
 router.route('/login')
@@ -16,5 +17,8 @@ router.route('/login')
 router.route('/register')
   .get(viewRegister)
   .post(register)
+
+router.route('/logout')
+  .get(logout)
 
 module.exports = router

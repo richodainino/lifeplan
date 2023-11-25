@@ -5,7 +5,7 @@
 </head>
 <body>
 
-  <%- include('../partials/header.ejs') %>
+  <%- include('../partials/header-login.ejs', {user: user}) %>
 
   <main>
     <% if (flash) { %>
@@ -13,11 +13,13 @@
     <% } %>
 
     <!-- Hero -->
+    <div class="bg-primary">
       <% if (user) { %>
         <h1 class="pt-16">
           hello <%= user.name %>
         </h1>
       <% } %>
+    </div>
   </main>
   
   <footer>

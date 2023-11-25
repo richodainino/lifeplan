@@ -7,8 +7,20 @@ exports.viewTryPremium = async (req, res) => {
 }
 
 exports.viewDashboard = async (req, res) => {
-  const user = req.session.user ? req.session.user : null
-  const flash = req.session.flash ? req.session.flash : null
+  const sessionIsLoggedIn = req.session.isLoggedIn ? req.session.isLoggedIn : false
+  const user = sessionIsLoggedIn ? req.session.user : null
+  
+  let flash = req.session.flash
+  if (req.session.flash) {
+    flash.ttl -= 1
+    if (flash.ttl <= 0) flash = null
+    else flash = req.session.flash
+  }
+  else {
+    flash = null
+  }
+
+  if (!sessionIsLoggedIn) return res.redirect('/login')
 
   res.render('pages/dashboard.ejs', {
     user: user, 
@@ -17,11 +29,39 @@ exports.viewDashboard = async (req, res) => {
 }
 
 exports.viewLogin = async (req, res) => {
-  const flash = req.session.flash ? req.session.flash : null
+  if (req.session.isLoggedIn) {
+    res.redirect('/dashboard')
+    return
+  }
+
+  let flash = req.session.flash
+  if (req.session.flash) {
+    flash.ttl -= 1
+    if (flash.ttl <= 0) flash = null
+    else flash = req.session.flash
+  }
+  else {
+    flash = null
+  }
+
   res.render('pages/login.ejs', {flash: flash})
 }
 
 exports.viewRegister = async (req, res) => {
-  const flash = req.session.flash ? req.session.flash : null
+  if (req.session.isLoggedIn) {
+    res.redirect('/dashboard')
+    return
+  }
+
+  let flash = req.session.flash
+  if (req.session.flash) {
+    flash.ttl -= 1
+    if (flash.ttl <= 0) flash = null
+    else flash = req.session.flash
+  }
+  else {
+    flash = null
+  }
+
   res.render('pages/register.ejs', {flash: flash})
 }

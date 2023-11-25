@@ -22,7 +22,8 @@ const users = (sequelize, Sequelize) => {
       allowNull: false,
     },
     role: {
-      type: Sequelize.STRING,
+      type: Sequelize.ENUM,
+      values: ['admin', 'free', 'premium'],
       defaultValue: 'free'
     },
     createdAt: Sequelize.DATE,

@@ -8,7 +8,8 @@ exports.login = async (req, res) => {
     if (!email || !password) {
       req.session.flash = {
         message: 'Email and password are required',
-        type: 'warning'
+        type: 'warning',
+        ttl: 2
       }
       res.redirect('/login')
       return
@@ -19,7 +20,8 @@ exports.login = async (req, res) => {
     if (!user) {
       req.session.flash = {
         message: 'Invalid email or password',
-        type: 'warning'
+        type: 'warning',
+        ttl: 2
       }
       res.redirect('/login')
       return
@@ -33,7 +35,8 @@ exports.login = async (req, res) => {
     console.log(e)
     req.session.flash = {
       message: 'An error occurred',
-      type: 'error'
+      type: 'error',
+        ttl: 2
     }
     res.redirect('/login')
   }
@@ -47,7 +50,8 @@ exports.register = async (req, res) => {
     if (!email || !password || !name) {
       req.session.flash = {
         message: 'Email, password, and name are required',
-        type: 'warning'
+        type: 'warning',
+        ttl: 2
       }
       res.redirect('/register')
       return
@@ -58,7 +62,8 @@ exports.register = async (req, res) => {
     if (!user) {
       req.session.flash = {
         message: 'Email already in use',
-        type: 'warning'
+        type: 'warning',
+        ttl: 2
       }
       res.redirect('/register')
       return
@@ -66,7 +71,8 @@ exports.register = async (req, res) => {
 
     req.session.flash = {
       message: 'Account created successfully. Login to continue.',
-      type: 'success'
+      type: 'success',
+      ttl: 2
     }
     res.redirect('/login')
   }
@@ -74,8 +80,14 @@ exports.register = async (req, res) => {
     console.log(e)
     req.session.flash = {
       message: 'An error occurred',
-      type: 'error'
+      type: 'error',
+        ttl: 2
     }
     res.redirect('/register')
   }
+}
+
+exports.logout = (req, res) => {
+  req.session.destroy()
+  res.redirect('/login')
 }

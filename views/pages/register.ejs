@@ -4,79 +4,85 @@
 <head>
   <%- include('../partials/head'); %>
 
-  <script>
-    const onKeyup = () => {
-      const password = document.querySelector('input[name="password"]')
-      const confirm = document.querySelector('input[name="confirm"]')
-      const tooltip = document.querySelector('.tooltip')
-      const submit = document.querySelector('button[name="submit"]')
-      
-      if (password.value !== confirm.value) {
-        tooltip.classList.remove('hidden')
-        submit.disabled = true
-      } else {
-        tooltip.classList.add('hidden')
-        submit.disabled = false
+    <script>
+      const onKeyup = () => {
+        const password = document.querySelector('input[name="password"]');
+        const confirm = document.querySelector('input[name="confirm"]');
+        const tooltip = document.querySelector('.tooltip');
+        const submit = document.querySelector('button[name="submit"]');
+
+        if (password.value !== confirm.value) {
+          tooltip.classList.remove('hidden');
+          submit.disabled = true;
+        } else {
+          tooltip.classList.add('hidden');
+          submit.disabled = false;
+        }
       }
-    }
-  </script>
+    </script>
 </head>
 
 <body>
 
-  <%- include('../partials/header.ejs') %>
+  <%- include('../partials/header-default.ejs') %>
 
-  <main>
-    
-    <!-- Hero -->
-    <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary">
-      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/landing-bg.png);"></div>
-      <div class="hero-content flex-col px-12 py-16">
-        <div class="card shrink-0 w-96 shadow-2xl bg-base-100">
-          <% if (flash) { %>
-            <%- include('../partials/flash.ejs', {flash: flash}) %>
-          <% } %>
-          <form class="card-body py-6" method="post">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Name</span>
-              </label>
-              <input name="name" type="name" placeholder="John Doe" class="input input-bordered" required />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label>
-              <input name="email" type="email" placeholder="john@doe.com" class="input input-bordered" required />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
-              </label>
-              <input name="password" type="password" placeholder="password" onKeyup="onKeyup()" class="input input-bordered" required />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Confirm password</span>
-              </label>
-              <input name="confirm" type="password" placeholder="password" onKeyup="onKeyup()" class="input input-bordered" required />
-              <div class="hidden tooltip tooltip-open tooltip-bottom left-0 tooltip-warning" data-tip="Password do not match"></div>
-            </div>
-            <div class="form-control mt-6">
-              <button name="submit" type="submit" class="btn btn-primary">Register</button>
-              <label class="label">
-                <p>Already have an account? Login <a href="/login" class="label-text-alt link link-primary text-base">here</a>!
-                </p>
-              </label>
-            </div>
-          </form>
+    <main>
+
+      <!-- Hero -->
+      <div class="hero min-h-screen bg-gradient-to-r from-primary to-secondary">
+        <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover"
+          style="background-image: url(/images/landing-bg.png);"></div>
+        <div class="hero-content flex-col px-12 py-16">
+          <div class="card shrink-0 w-96 shadow-2xl bg-base-100">
+            <% if (flash) { %>
+              <%- include('../partials/flash.ejs', {flash: flash}) %>
+                <% } %>
+                  <form class="card-body py-6" method="post">
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Name</span>
+                      </label>
+                      <input name="name" type="name" placeholder="John Doe" class="input input-bordered" required />
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Email</span>
+                      </label>
+                      <input name="email" type="email" placeholder="john@doe.com" class="input input-bordered"
+                        required />
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Password</span>
+                      </label>
+                      <input name="password" type="password" placeholder="password" onKeyup="onKeyup()"
+                        class="input input-bordered" required />
+                    </div>
+                    <div class="form-control">
+                      <label class="label">
+                        <span class="label-text">Confirm password</span>
+                      </label>
+                      <input name="confirm" type="password" placeholder="password" onKeyup="onKeyup()"
+                        class="input input-bordered" required />
+                      <div class="hidden tooltip tooltip-open tooltip-bottom left-0 tooltip-warning"
+                        data-tip="Password do not match"></div>
+                    </div>
+                    <div class="form-control mt-6">
+                      <button name="submit" type="submit" class="btn btn-primary">Register</button>
+                      <label class="label">
+                        <p>Already have an account? Login <a href="/login"
+                            class="label-text-alt link link-primary text-base">here</a>!
+                        </p>
+                      </label>
+                    </div>
+                  </form>
+          </div>
         </div>
       </div>
-    </div>
 
-  <footer>
-    <%- include('../partials/footer.ejs') %>
-  </footer>
+      <footer>
+        <%- include('../partials/footer.ejs') %>
+      </footer>
 
 </body>
 
