@@ -9,23 +9,10 @@ exports.viewTryPremium = async (req, res) => {
 exports.viewDashboard = async (req, res) => {
   const sessionIsLoggedIn = req.session.isLoggedIn ? req.session.isLoggedIn : false
   const user = sessionIsLoggedIn ? req.session.user : null
-  
-  let flash = req.session.flash
-  if (req.session.flash) {
-    flash.ttl -= 1
-    if (flash.ttl <= 0) flash = null
-    else flash = req.session.flash
-  }
-  else {
-    flash = null
-  }
 
   if (!sessionIsLoggedIn) return res.redirect('/login')
 
-  res.render('pages/dashboard.ejs', {
-    user: user, 
-    flash: flash
-  })
+  res.render('pages/dashboard.ejs', {user: user})
 }
 
 exports.viewLogin = async (req, res) => {

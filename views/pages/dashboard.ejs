@@ -8,23 +8,67 @@
   <%- include('../partials/header-login.ejs', {user: user}) %>
 
   <main>
-    <% if (flash) { %>
-      <%- include('../partials/flash.ejs', {flash: flash}) %>
-    <% } %>
+    <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
+      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/dashboard-bg.png);"></div>
+      <div class="hero-content justify-center py-10">
+        <div class="grid grid-cols-2 place-items-center gap-6">
+          <div class="flex flex-col gap-6">
+            <div class="text-white">
+              <h1 class="grow text-4xl font-bold text-center">Welcome <%= user.name %>!</h1>
+              <h2 class="text-xl text-center">25 November 2023</h2>
+            </div>
+            <div class="rounded-box glass p-5 text-white">
+              <!-- <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to add task</h2> -->
+              <h2 class="text-xl font-semibold text-center">Upcoming Tasks</h2>
+              <ol class="menu rounded-box">
+                <li class="text-lg"><a href="">
+                  1. Make Life Plan website
+                </a></li>
+                <li class="text-lg"><a href="">
+                  2. Make a reservation for karaoke date
+                </a></li>
+                <li class="text-lg"><a href="">
+                  3. Wash Oyen and Cimi
+                </a></li>
+              </ol>
+            </div>
+          </div>
 
-    <!-- Hero -->
-    <div class="bg-primary">
-      <% if (user) { %>
-        <h1 class="pt-16">
-          hello <%= user.name %>
-        </h1>
-      <% } %>
+          <div class="grid grid-cols-2 gap-4">
+            <% cards = [
+              {
+                link: '/dashboard/plan',
+                image: '/images/planning.png',
+                title: 'Start Planning'
+              },
+              {
+                link: '/dashboard/schedule',
+                image: '/images/schedule.png',
+                title: 'Schedule'
+              },
+              {
+                link: '/dashboard/history',
+                image: '/images/history.png',
+                title: 'History'
+              },
+              {
+                link: '/dashboard/package',
+                image: '/images/package.png',
+                title: 'My Package'
+              }
+            ] %>
+
+            <% cards.forEach(card => { %>
+              <%- include('../partials/card-link.ejs', {card: card}) %>
+            <% }) %>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
   
   <footer>
     <%- include('../partials/footer.ejs') %>
   </footer>
-
 </body>
 </html>

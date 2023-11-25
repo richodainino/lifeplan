@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 const envFound = dotenv.config()
 
 if (envFound.error) {
-  throw new Error("Couldn't find .env file")
+  console.log("Couldn't find .env file")
 }
 
 const config = {
@@ -11,7 +11,7 @@ const config = {
   dbName: process.env.DB_NAME,
   dbUser: process.env.DB_USER,
   dbPass: process.env.DB_PASS,
-  port: process.env.PORT || 8000,
+  port: process.env.PORT || 8080,
   sessionSecret: process.env.SESSION_SECRET,
   nodeEnv: process.env.NODE_ENV,
 }

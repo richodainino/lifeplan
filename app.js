@@ -9,18 +9,21 @@ const config = require('./config')
 const routes = require('./app/routes')
 
 const db = require('./app/models')
-// db.sequelize.sync({ force: true })
-//   .then(() => {
-//     console.log('Database is connected')
-//   })
-//   .catch((err) => {
-//     console.log('Failed connecting to database: ' + err.message)
-//   })
+db.sequelize.sync()
+  .then(() => {
+    console.log('Database is connected')
+  })
+  .catch((err) => {
+    console.log('Failed connecting to database: ' + err.message)
+  })
 
 app.use(session({
   secret: config.sessionSecret,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60*60*1000
+  }
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
