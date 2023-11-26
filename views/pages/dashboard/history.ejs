@@ -9,33 +9,36 @@
 
   <main>
     <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
-      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/dashboard-bg.png);"></div>
-      <div class="hero-content justify-center py-10">
-        <div class="grid grid-cols-2 place-items-center gap-6">
-          <div class="flex flex-col gap-6">
-            <div class="text-white">
-              <h1 class="grow text-4xl font-bold text-center">Welcome <%= user.name %>!</h1>
-              <h2 class="text-xl text-center">25 November 2023</h2>
+      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/planning-bg.png);"></div>
+      <div class="hero-content flex-row px-12 py-16">
+        <div class="card shrink-0 shadow-2xl bg-white">
+          <div class="card-body py-6">
+            <h2 class="text-2xl text-center col-span-2">Task History</h2>
+            <div class="flex">
+              <ul class="menu w-80">
+                <li>
+                  <h2 class="menu-title">27 November 2023</h2>
+                  <ul>
+                    <li><a>Fill internship form</a></li>
+                    <li><a>Research for thesis</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <h2 class="menu-title">26 November 2023</h2>
+                  <ul>
+                    <li><a>Buy grocery</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <h2 class="menu-title">25 November 2023</h2>
+                  <ul>
+                    <li><a>Make Life Plan website</a></li>
+                    <li><a>Make a reservation for karaoke date</a></li>
+                    <li><a>Wash Oyen and Cimi</a></li>
+                  </ul>
+                </li>
+              </ul>
             </div>
-            <div class="rounded-box glass p-5 text-white">
-              <!-- <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to add task</h2> -->
-              <h2 class="text-xl font-semibold text-center">Upcoming Tasks</h2>
-              <ol class="menu rounded-box">
-                <li class="text-lg"><a href="">
-                  1. Make Life Plan website
-                </a></li>
-                <li class="text-lg"><a href="">
-                  2. Make a reservation for karaoke date
-                </a></li>
-                <li class="text-lg"><a href="">
-                  3. Wash Oyen and Cimi
-                </a></li>
-              </ol>
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-4">
-            History
           </div>
         </div>
       </div>
