@@ -1,49 +1,100 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="lifeplan">
+<html lang="en">
+
 <head>
   <%- include('../../partials/head'); %>
 </head>
+
 <body>
 
-  <%- include('../../partials/header-login.ejs', {user: user}) %>
+  <%- include('../../partials/header-login.ejs') %>
 
-  <main>
-    <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
-      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/dashboard-bg.png);"></div>
-      <div class="hero-content justify-center py-10">
-        <div class="grid grid-cols-2 place-items-center gap-6">
-          <div class="flex flex-col gap-6">
-            <div class="text-white">
-              <h1 class="grow text-4xl font-bold text-center">Welcome <%= user.name %>!</h1>
-              <h2 class="text-xl text-center">25 November 2023</h2>
-            </div>
-            <div class="rounded-box glass p-5 text-white">
-              <!-- <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to add task</h2> -->
-              <h2 class="text-xl font-semibold text-center">Upcoming Tasks</h2>
-              <ol class="menu rounded-box">
-                <li class="text-lg"><a href="">
-                  1. Make Life Plan website
-                </a></li>
-                <li class="text-lg"><a href="">
-                  2. Make a reservation for karaoke date
-                </a></li>
-                <li class="text-lg"><a href="">
-                  3. Wash Oyen and Cimi
-                </a></li>
-              </ol>
+    <main>
+      <!-- Hero -->
+      <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
+        <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover"
+          style="background-image: url(/images/landing-bg.png);"></div>
+        <div class="hero-content flex-col lg:flex-row-reverse">
+
+          <div class="">
+            <div class="mx-auto max-w-5xl px-6 lg:px-8 py-8 glass rounded-3xl">
+              <div class="mx-auto max-w-2xl sm:text-center">
+                <h2 class="text-2xl font-bold tracking-tight sm:text-3xl">You have an active package</h2>
+              </div>
+              <div
+                class="mx-auto mt-6 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-8 lg:mx-0 lg:flex lg:max-w-none">
+                <div class="p-8 lg:flex-auto">
+                  <h3 class="text-2xl font-bold tracking-tight">Monthly membership</h3>
+                  <p class="mt-1 text-base leading-6">Thank you for purchasing LIFE PLAN monthly membership. For any inquiries, feel free to contact us.</p>
+                  <div class="mt-3 flex items-center gap-x-4">
+                    <h4 class="flex-none text-md font-semibold leading-6 text-primary">What's included</h4>
+                    <div class="h-px flex-auto bg-gray-100"></div>
+                  </div>
+                  <ul role="list" class="mt-3 grid grid-cols-1 gap-2 text-sm leading-6 sm:grid-cols-2 sm:gap-3">
+                    <li class="flex gap-x-3">
+                      <svg class="h-6 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      Unlimited task planning
+                    </li>
+                    <li class="flex gap-x-3">
+                      <svg class="h-6 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      Plan task for 1 month
+                    </li>
+                    <li class="flex gap-x-3">
+                      <svg class="h-6 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      Access to older tasks
+                    </li>
+                    <li class="flex gap-x-3">
+                      <svg class="h-6 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd"
+                          d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
+                          clip-rule="evenodd" />
+                      </svg>
+                      Free of ads
+                    </li>
+                  </ul>
+                </div>
+                <div class="p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
+                  <div
+                    class="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16">
+                    <div class="mx-auto max-w-xs px-8">
+                      <p class="flex items-baseline justify-center gap-x-2">
+                        <span class="text-lg font-semibold leading-6 tracking-wide text-gray-600">Rp.</span>
+                        <span class="text-5xl font-bold tracking-tight text-gray-900">50.000</span>
+                        <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">/month</span>
+                      </p>
+                      <a href="https://shopee.co.id/shopee"
+                        class="mt-6 w-full btn btn-primary btn-disabled">Active</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
-            Package
-          </div>
         </div>
       </div>
-    </div>
-  </main>
-  
-  <footer>
-    <%- include('../../partials/footer.ejs') %>
-  </footer>
+    </main>
+
+    <footer>
+      <%- include('../../partials/footer.ejs') %>
+    </footer>
+
 </body>
+
 </html>
