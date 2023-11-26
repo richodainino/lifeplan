@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lifeplan">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+  <%- include('../../partials/header-login.ejs', {user: user}) %>
+
+  <main>
+    <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
+      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/planning-bg.png);"></div>
+      <div class="hero-content flex-row px-12 py-16">
+        <div class="card shrink-0 shadow-2xl bg-white">
+          <% if (flash) { %>
+            <%- include('../partials/flash.ejs', {flash: flash}) %>
+          <% } %>
+          <form class="card-body py-6" method="post">
+            <h2 class="text-2xl text-center col-span-2">Create New Task</h2>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="grid gap-3">
+                <!-- Title -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Title</span>
+                  </label>
+                  <input name="title" type="text" placeholder="Task Title" class="input input-bordered" required />
+                </div>
+                <!-- Description -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Description</span>
+                  </label>
+                  <textarea name="description" placeholder="Task Description" class="textarea textarea-bordered"></textarea>
+                </div>
+                <!-- Duration -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Duration</span>
+                  </label>
+                  <div class="flex grid-cols-2 shrink">
+                    <input name="duration-hour" type="number" placeholder="2" min="0" max="23" class="input input-bordered w-14 px-2" required />
+                    <label class="label">
+                      <span class="label-text">hours</span>
+                    </label>
+                    <input name="duration-minute" type="number" placeholder="30" min="0" max="45" step="15" class="input input-bordered w-14 px-2" required />
+                    <label class="label">
+                      <span class="label-text">minutes</span>
+                    </label>
+                  </div>
+                </div>
+                <!-- Deadline -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Deadline</span>
+                  </label>
+                  <input name="deadline" type="date" min="2023-11-26" class="input input-bordered" required />
+                </div>
+              </div>
+
+              <div class="grid gap-3">
+                <!-- Impact on life -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Impact on your life</span>
+                  </label>
+                  <input name="life-impact" type="range" min="1" max="5" value="3" class="range range-primary" step="1" required />
+                  <div class="w-full flex justify-between text-xs px-2">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+                <!-- Impact on people -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Impact on other people</span>
+                  </label>
+                  <input name="people-impact" type="range" min="1" max="5" value="3" class="range range-primary" step="1" required />
+                  <div class="w-full flex justify-between text-xs px-2">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+                <!-- Impact on activity -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Impact on other activity</span>
+                  </label>
+                  <input name="activity-impact" type="range" min="1" max="5" value="3" class="range range-primary" step="1" required />
+                  <div class="w-full flex justify-between text-xs px-2">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+                <!-- Difficulty -->
+                <div class="form-control">
+                  <label class="label">
+                    <span class="label-text">Difficulty</span>
+                  </label>
+                  <input name="difficulty" type="range" min="1" max="5" value="3" class="range range-primary" step="1" required />
+                  <div class="w-full flex justify-between text-xs px-2">
+                    <span>1</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-control mt-6 col-span-2">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <%- include('../../partials/footer.ejs') %>
+  </footer>
+</body>
+</html>

@@ -1,5 +1,43 @@
 const UserService = require('../services/users')
 
+exports.viewLogin = async (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.redirect('/dashboard')
+    return
+  }
+
+  let flash = req.session.flash
+  if (req.session.flash) {
+    flash.ttl -= 1
+    if (flash.ttl <= 0) flash = null
+    else flash = req.session.flash
+  }
+  else {
+    flash = null
+  }
+
+  res.render('pages/login.ejs', {flash: flash})
+}
+
+exports.viewRegister = async (req, res) => {
+  if (req.session.isLoggedIn) {
+    res.redirect('/dashboard')
+    return
+  }
+
+  let flash = req.session.flash
+  if (req.session.flash) {
+    flash.ttl -= 1
+    if (flash.ttl <= 0) flash = null
+    else flash = req.session.flash
+  }
+  else {
+    flash = null
+  }
+
+  res.render('pages/register.ejs', {flash: flash})
+}
+
 exports.login = async (req, res) => {
   try {
     const UserServiceInstance = new UserService()
@@ -36,7 +74,7 @@ exports.login = async (req, res) => {
     req.session.flash = {
       message: 'An error occurred',
       type: 'error',
-        ttl: 2
+      ttl: 2
     }
     res.redirect('/login')
   }
@@ -81,7 +119,7 @@ exports.register = async (req, res) => {
     req.session.flash = {
       message: 'An error occurred',
       type: 'error',
-        ttl: 2
+      ttl: 2
     }
     res.redirect('/register')
   }

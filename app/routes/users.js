@@ -2,9 +2,7 @@ const router = require('express').Router()
 
 const { 
   viewLogin,
-  viewRegister
-} = require('../controllers/view')
-const { 
+  viewRegister,
   login,
   register,
   logout
