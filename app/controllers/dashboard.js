@@ -61,13 +61,36 @@ exports.viewPackage = async (req, res) => {
 }
 
 exports.createPlan = async (req, res) => {
-  // const { 
-  //   planName,
-  //   planPrice,
-  //   planDuration,
-  //   planDescription
-  // } = req.body
+  const { 
+    title,
+    description,
+    'duration-hour': duration_hour,
+    'duration-minute': duration_minute,
+    deadline,
+    'life-impact': life_impact,
+    'people-impact': people_impact,
+    'activity-impact': activity_impact,
+    difficulty
+  } = req.body
 
-  console.log(req.body)
-  res.redirect('/dashboard/plan/1')
+  const user = {
+    name: 'John Doe'
+  }
+
+  const duration = parseInt(duration_hour) * 60 + parseInt(duration_minute)
+  
+  const plan = {
+    title: title,
+    description: description,
+    duration_hour: duration_hour,
+    duration_minute: duration_minute,
+    deadline: deadline,
+    life_impact: life_impact,
+    people_impact: people_impact,
+    activity_impact: activity_impact,
+    difficulty: difficulty
+  }
+
+  // res.redirect('/dashboard/plan/1')
+  res.render('pages/dashboard/plan-detail.ejs', {user: user, plan: plan})
 }
