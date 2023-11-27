@@ -9,16 +9,16 @@
 
   <main>
     <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
-      <div class="hero-overlay opacity-25 bg-no-repeat bg-center bg-cover" style="background-image: url(/images/planning-bg.png);"></div>
+      <div class="hero-overlay opacity-25 bg-center bg-cover bg-fixed" style="background-image: url(/images/planning-bg.png);"></div>
       <div class="hero-content flex-row px-12 py-16">
         <div class="card shrink-0 shadow-2xl bg-white">
           <% if (flash) { %>
             <%- include('../partials/flash.ejs', {flash: flash}) %>
           <% } %>
-          <form class="card-body py-6" method="post">
-            <h2 class="text-2xl text-center col-span-2">Create New Task</h2>
+          <form class="card-body py-6 w-[38rem]" method="post">
+            <h2 class="text-2xl text-center col-span-2 pb-2">Create New Task</h2>
             <div class="grid grid-cols-2 gap-6">
-              <div class="grid gap-3">
+              <div class="grid gap-3 w-64">
                 <!-- Title -->
                 <div class="form-control">
                   <label class="label">
