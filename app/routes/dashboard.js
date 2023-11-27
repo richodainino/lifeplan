@@ -2,10 +2,11 @@ const router = require('express').Router()
 
 const {
   viewDashboard,
-  viewDashboardPlan,
-  viewDashboardSchedule,
-  viewDashboardHistory,
-  viewDashboardPackage,
+  viewPlan,
+  viewPlanDetail,
+  viewSchedule,
+  viewHistory,
+  viewPackage,
   createPlan
 } = require('../controllers/dashboard')
 
@@ -13,16 +14,21 @@ router.route('/')
   .get(viewDashboard)
 
 router.route('/plan')
-  .get(viewDashboardPlan)
+  .get(viewPlan)
   .post(createPlan)
 
+router.route('/plan/:id')
+  .get(viewPlanDetail)
+  // .put(updatePlan)
+  // .delete(deletePlan)
+
 router.route('/schedule')
-  .get(viewDashboardSchedule)
+  .get(viewSchedule)
 
 router.route('/history')
-  .get(viewDashboardHistory)
+  .get(viewHistory)
 
 router.route('/package')
-  .get(viewDashboardPackage)
+  .get(viewPackage)
 
 module.exports = router

@@ -1,0 +1,22 @@
+<% if (category === 1) {%>
+  <p>
+    <span class="font-semibold">Must be done.</span> This activity is very important and must be done immediately.
+    Without this activity, the final result will
+    be disrupted.
+  </p>
+<% } else if (category === 2) {%>
+  <p>
+    <span class="font-semibold">Should be done.</span> This activity is not mandatory, but it is highly recommended to do. By doing this activity, the final
+    result will be better.
+  </p>
+<% } else if (category === 3) {%>
+  <p>
+    <span class="font-semibold">Optional</span> This activity can be done, but it is not too important. Doing this activity can improve the final result, but
+    not significantly.
+  </p>
+<% } else if (category === 4) {%>
+  <p>
+    <span class="font-semibold">Does not need to be done.</span> This activity is not necessary and can be ignored. Not doing this activity will not affect the
+    final result.
+  </p>
+<% } %>

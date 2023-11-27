@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lifeplan">
+<head>
+  <%- include('../../partials/head'); %>
+</head>
+<body>
+
+  <%- include('../../partials/header-login.ejs', {user: user}) %>
+
+  <main>
+    <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
+      <div class="hero-overlay opacity-25 bg-center bg-cover bg-fixed" style="background-image: url(/images/planning-bg.png);"></div>
+      <div class="hero-content flex-row px-12 py-16">
+        <div class="card shrink-0 shadow-2xl bg-white">
+          <div class="card-body py-6 w-[38rem]">
+            <h2 class="text-2xl text-center col-span-2">Plan <%= id %></h2>
+            <div class="grid grid-cols-2 gap-6">
+              <div class="grid">
+                <!-- Title -->
+                <div class="">
+                  <label class="label">
+                    <span class="label-text">Title</span>
+                  </label>
+                  <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>Wash Oyen</p>
+                  </div>
+                </div>
+
+                <!-- Description -->
+                <div class="">
+                  <label class="label">
+                    <span class="label-text">Description</span>
+                  </label>
+                  <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>Wash Oyen and Cimi because they're dirty</p>
+                  </div>
+                </div>
+
+                <!-- Duration -->
+                <div class="">
+                  <label class="label">
+                    <span class="label-text">Duration</span>
+                  </label>
+                  <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>2 hours 30 minutes</p>
+                  </div>
+                </div>
+
+                <!-- Deadline -->
+                <div class="">
+                  <label class="label">
+                    <span class="label-text">Deadline</span>
+                  </label>
+                  <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>25-November-2023</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid">
+                <!-- Impact on life -->
+                <div class="label">
+                  <p>Impact on your life</p>
+                  <div class="w-fit px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>3</p>
+                  </div>
+                </div>
+
+                <!-- Impact on people -->
+                <div class="label">
+                  <p>Impact on other people</p>
+                  <div class="w-fit px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>3</p>
+                  </div>
+                </div>
+
+                <!-- Impact on activity -->
+                <div class="label">
+                  <p>Impact on other activity</p>
+                  <div class="w-fit px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>3</p>
+                  </div>
+                </div>
+
+                <!-- Difficulty -->
+                <div class="label">
+                  <p>Difficulty</p>
+                  <div class="w-fit px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                    <p>3</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider divider-primary m-2"></div>
+            
+            <div class="flex gap-6">
+              <!-- Priority -->
+              <div class="">
+                <div class="label">
+                  <p class="font-semibold">Priority</p>
+                </div>
+                <div class="w-fit px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
+                  <p>1</p>
+                </div>
+              </div>
+              
+              <!-- Result Description -->
+              <div class="flex flex-col w-full">
+                <div class="label">
+                  <p class="font-semibold">Result</p>
+                </div>
+                <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg grow-0">
+                  <%- include('../../partials/result-desc.ejs', {category:1}) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <%- include('../../partials/footer.ejs') %>
+  </footer>
+</body>
+</html>

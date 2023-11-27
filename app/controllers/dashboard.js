@@ -11,7 +11,7 @@ exports.viewDashboard = async (req, res) => {
   res.render('pages/dashboard', {user: user})
 }
 
-exports.viewDashboardPlan = async (req, res) => {
+exports.viewPlan = async (req, res) => {
   let flash = req.session.flash
   if (req.session.flash) {
     flash.ttl -= 1
@@ -29,7 +29,17 @@ exports.viewDashboardPlan = async (req, res) => {
   res.render('pages/dashboard/plan.ejs', {user: user, flash: flash})
 }
 
-exports.viewDashboardSchedule = async (req, res) => {
+exports.viewPlanDetail = async (req, res) => {
+  const user = {
+    name: 'John Doe'
+  }
+
+  const { id } = req.params;
+
+  res.render('pages/dashboard/plan-detail.ejs', {user: user, id: id})
+}
+
+exports.viewSchedule = async (req, res) => {
   const user = {
     name: 'John Doe'
   }
@@ -37,7 +47,7 @@ exports.viewDashboardSchedule = async (req, res) => {
   res.render('pages/dashboard/schedule.ejs', {user: user})
 }
 
-exports.viewDashboardHistory = async (req, res) => {
+exports.viewHistory = async (req, res) => {
   const user = {
     name: 'John Doe'
   }
@@ -45,7 +55,7 @@ exports.viewDashboardHistory = async (req, res) => {
   res.render('pages/dashboard/history.ejs', {user: user})
 }
 
-exports.viewDashboardPackage = async (req, res) => {
+exports.viewPackage = async (req, res) => {
   const user = {
     name: 'John Doe'
   }
@@ -62,5 +72,5 @@ exports.createPlan = async (req, res) => {
   // } = req.body
 
   console.log(req.body)
-  res.redirect('/dashboard')
+  res.redirect('/dashboard/plan/1')
 }
