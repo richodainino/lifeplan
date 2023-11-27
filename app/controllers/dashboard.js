@@ -1,12 +1,9 @@
 exports.viewDashboard = async (req, res) => {
   const sessionIsLoggedIn = req.session.isLoggedIn ? req.session.isLoggedIn : false
-  // const user = sessionIsLoggedIn ? req.session.user : null
+  const user = sessionIsLoggedIn ? req.session.user : {name: 'John Doe'}
 
   // TODO: Uncomment this when you're ready to implement authentication
-  // if (!sessionIsLoggedIn) return res.redirect('/login')
-  const user = {
-    name: 'John Doe'
-  }
+  if (!sessionIsLoggedIn) return res.redirect('/login')
 
   res.render('pages/dashboard', {user: user})
 }
