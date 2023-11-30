@@ -1,4 +1,4 @@
-const UserService = require('../services/users')
+const AuthService = require('../services/auth')
 
 exports.viewLogin = async (req, res) => {
   if (req.session.isLoggedIn) {
@@ -40,7 +40,7 @@ exports.viewRegister = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const UserServiceInstance = new UserService()
+    const AuthServiceInstance = new AuthService()
     const {email, password} = req.body
     
     if (!email || !password) {
@@ -53,7 +53,7 @@ exports.login = async (req, res) => {
       return
     }
     
-    const user = await UserServiceInstance.login(email, password)
+    const user = await AuthServiceInstance.login(email, password)
 
     if (!user) {
       req.session.flash = {
@@ -82,7 +82,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const UserServiceInstance = new UserService()
+    const AuthServiceInstance = new AuthService()
     const {name, email, password, } = req.body
     
     if (!email || !password || !name) {
@@ -95,7 +95,7 @@ exports.register = async (req, res) => {
       return
     }
     
-    const user = await UserServiceInstance.register(email, password, name)
+    const user = await AuthServiceInstance.register(email, password, name)
 
     if (!user) {
       req.session.flash = {

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const userRoutes = require('./users')
+const authRoutes = require('./auth')
 const dashboardRoutes = require('./dashboard')
 
 const { 
@@ -10,9 +10,9 @@ const {
 router.route('/').get(viewIndex)
 router.route('/try-premium').get(viewTryPremium)
 
-router.route('/login').all(userRoutes)
-router.route('/register').all(userRoutes)
-router.route('/logout').all(userRoutes)
+router.route('/login').all(authRoutes)
+router.route('/register').all(authRoutes)
+router.route('/logout').all(authRoutes)
 
 router.use('/dashboard', dashboardRoutes)
 

@@ -6,7 +6,7 @@ const {
   login,
   register,
   logout
-} = require('../controllers/users')
+} = require('../controllers/auth')
 
 router.route('/login')
   .get(viewLogin)

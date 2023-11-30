@@ -2,7 +2,7 @@ const db = require('../models')
 const User = db.users
 const bcrypt = require('../helpers/bcrypt')
 
-class UserService {
+class AuthService {
   constructor () {
     this.userModel = User
   }
@@ -33,4 +33,4 @@ class UserService {
   }
 }
 
-module.exports = UserService
+module.exports = AuthService
