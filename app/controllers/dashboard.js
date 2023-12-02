@@ -1,35 +1,22 @@
 exports.viewDashboard = async (req, res) => {
-  const sessionIsLoggedIn = req.session.isLoggedIn ? req.session.isLoggedIn : false
-  const user = sessionIsLoggedIn ? req.session.user : {name: 'John Doe'}
-
-  // TODO: Uncomment this when you're ready to implement authentication
-  if (!sessionIsLoggedIn) return res.redirect('/login')
-
+  const user = req.user
   res.render('pages/dashboard', {user: user})
 }
 
 exports.viewPlan = async (req, res) => {
-  let flash = req.session.flash
-  if (req.session.flash) {
-    flash.ttl -= 1
-    if (flash.ttl <= 0) flash = null
-    else flash = req.session.flash
+  let flash = {
+    message: req.flash('error'),
+    type: 'warning',
   }
-  else {
-    flash = null
-  }
+  if (flash.message.length === 0) flash = null
 
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   res.render('pages/dashboard/plan.ejs', {user: user, flash: flash})
 }
 
 exports.viewPlanDetail = async (req, res) => {
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   const { id } = req.params;
 
@@ -37,25 +24,19 @@ exports.viewPlanDetail = async (req, res) => {
 }
 
 exports.viewSchedule = async (req, res) => {
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   res.render('pages/dashboard/schedule.ejs', {user: user})
 }
 
 exports.viewHistory = async (req, res) => {
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   res.render('pages/dashboard/history.ejs', {user: user})
 }
 
 exports.viewPackage = async (req, res) => {
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   res.render('pages/dashboard/package.ejs', {user: user})
 }
@@ -73,9 +54,7 @@ exports.createPlan = async (req, res) => {
     difficulty
   } = req.body
 
-  const user = {
-    name: 'John Doe'
-  }
+  const user = req.user
 
   const duration = parseInt(duration_hour) * 60 + parseInt(duration_minute)
   

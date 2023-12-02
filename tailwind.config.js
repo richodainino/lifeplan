@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./views/**/*.ejs"],
+  content: ["./app/views/**/*.ejs"],
   safelist: [
     {
       pattern: /alert-(warning|success|error|info)/,

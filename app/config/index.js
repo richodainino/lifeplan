@@ -2,7 +2,7 @@ const dotenv = require('dotenv')
 const envFound = dotenv.config()
 
 if (envFound.error) {
-  console.log("Couldn't find .env file")
+  console.log("No .env file located. Using environment variables.")
 }
 
 const config = {

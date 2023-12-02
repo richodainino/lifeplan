@@ -6,17 +6,17 @@
 
     <script>
       const onKeyup = () => {
-        const password = document.querySelector('input[name="password"]');
-        const confirm = document.querySelector('input[name="confirm"]');
-        const tooltip = document.querySelector('.tooltip');
-        const submit = document.querySelector('button[name="submit"]');
+        const password = document.querySelector('input[name="password"]')
+        const confirm = document.getElementById('confirm')
+        const tooltip = document.querySelector('.tooltip')
+        const submit = document.querySelector('button[name="submit"]')
 
         if (password.value !== confirm.value) {
-          tooltip.classList.remove('hidden');
-          submit.disabled = true;
+          tooltip.classList.remove('hidden')
+          submit.disabled = true
         } else {
-          tooltip.classList.add('hidden');
-          submit.disabled = false;
+          tooltip.classList.add('hidden')
+          submit.disabled = false
         }
       }
     </script>
@@ -36,46 +36,46 @@
           <div class="card shrink-0 w-96 shadow-2xl bg-white">
             <% if (flash) { %>
               <%- include('../partials/flash.ejs', {flash: flash}) %>
-                <% } %>
-                  <form class="card-body py-6" method="post">
-                    <div class="form-control">
-                      <label class="label">
-                        <span class="label-text">Name</span>
-                      </label>
-                      <input name="name" type="name" placeholder="John Doe" class="input input-bordered" required />
-                    </div>
-                    <div class="form-control">
-                      <label class="label">
-                        <span class="label-text">Email</span>
-                      </label>
-                      <input name="email" type="email" placeholder="john@doe.com" class="input input-bordered"
-                        required />
-                    </div>
-                    <div class="form-control">
-                      <label class="label">
-                        <span class="label-text">Password</span>
-                      </label>
-                      <input name="password" type="password" placeholder="password" onKeyup="onKeyup()"
-                        class="input input-bordered" required />
-                    </div>
-                    <div class="form-control">
-                      <label class="label">
-                        <span class="label-text">Confirm password</span>
-                      </label>
-                      <input name="confirm" type="password" placeholder="password" onKeyup="onKeyup()"
-                        class="input input-bordered" required />
-                      <div class="hidden tooltip tooltip-open tooltip-bottom left-0 tooltip-warning"
-                        data-tip="Password do not match"></div>
-                    </div>
-                    <div class="form-control mt-6">
-                      <button name="submit" type="submit" class="btn btn-primary">Register</button>
-                      <label class="label">
-                        <p>Already have an account? Login <a href="/login"
-                            class="label-text-alt link link-primary text-base">here</a>!
-                        </p>
-                      </label>
-                    </div>
-                  </form>
+            <% } %>
+            <form id="register-form" class="card-body py-6" method="post" action="/register">
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Name</span>
+                </label>
+                <input name="name" type="name" placeholder="John Doe" class="input input-bordered" required />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input name="email" type="email" placeholder="john@doe.com" class="input input-bordered"
+                  required />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Password</span>
+                </label>
+                <input name="password" type="password" placeholder="password" onKeyup="onKeyup()"
+                  class="input input-bordered" required />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Confirm password</span>
+                </label>
+                <input id="confirm" type="password" placeholder="password" onKeyup="onKeyup()"
+                  class="input input-bordered" required />
+                <div class="hidden tooltip tooltip-open tooltip-bottom left-0 tooltip-warning"
+                  data-tip="Password do not match"></div>
+              </div>
+              <div class="form-control mt-6">
+                <button name="submit" type="submit" class="btn btn-primary" onsubmit="onSubmit()">Register</button>
+                <label class="label">
+                  <p>Already have an account? Login <a href="/login"
+                      class="label-text-alt link link-primary text-base">here</a>!
+                  </p>
+                </label>
+              </div>
+            </form>
           </div>
         </div>
       </div>

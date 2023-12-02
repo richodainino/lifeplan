@@ -2,6 +2,7 @@ const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const passport = require('passport');
+const flash = require('connect-flash')
 
 const config = require('./app/config')
 const db = require('./app/models');
@@ -23,17 +24,19 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
 
-// db.sequelize.sync({ force: false })
-//   .then(() => {
-//     console.log('Database is connected')
-//   })
-//   .catch((err) => {
-//     console.log('Failed connecting to database: ' + err.message)
-//   })
+require('./app/config/passport')(passport)
+db.sequelize.sync({ force: false })
+  .then(() => {
+    console.log('Database is connected')
+  })
+  .catch((err) => {
+    console.log('Failed connecting to database: ' + err.message)
+  })
 
 app.use('/', routes)
 
 app.listen(config.port, () => {
-  console.log(`Server is listening on port ${config.port}.`)
+  console.log(`Server is listening on port ${config.port}`)
 })
