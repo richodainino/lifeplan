@@ -16,7 +16,7 @@
             <%- include('../partials/flash.ejs', {flash: flash}) %>
           <% } %>
           <form class="card-body py-6 w-[38rem]" method="post">
-            <h2 class="text-2xl text-center col-span-2 pb-2">Create New Task</h2>
+            <h2 class="text-2xl text-center col-span-2 pb-2">Create New Plan</h2>
             <div class="grid grid-cols-2 gap-6">
               <div class="grid gap-3 w-64">
                 <!-- Title -->
@@ -24,14 +24,14 @@
                   <label class="label">
                     <span class="label-text">Title</span>
                   </label>
-                  <input name="title" type="text" placeholder="Task Title" class="input input-bordered" required />
+                  <input name="title" type="text" placeholder="Plan Title" class="input input-bordered" required />
                 </div>
                 <!-- Description -->
                 <div class="form-control">
                   <label class="label">
                     <span class="label-text">Description</span>
                   </label>
-                  <textarea name="description" placeholder="Task Description" class="textarea textarea-bordered"></textarea>
+                  <textarea name="description" placeholder="Plan Description" class="textarea textarea-bordered"></textarea>
                 </div>
                 <!-- Duration -->
                 <div class="form-control">
