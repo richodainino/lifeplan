@@ -7,7 +7,7 @@ exports.viewDashboard = async (req, res) => {
   const PlanServiceInstance = new PlanService()
   try {
     const plans = await PlanServiceInstance.getAllByUserIdByDeadlineDate(user.id, date)
-    res.render('pages/dashboard', {user: user, plans: plans})
+    res.render('pages/dashboard', {user: user, plans: plans, date: date})
   }
   catch (err) {
     req.flash('error', 'Plans not found')
