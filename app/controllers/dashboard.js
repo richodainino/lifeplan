@@ -1,9 +1,21 @@
+const PlanService = require('../services/plan')
+
 exports.viewDashboard = async (req, res) => {
   const user = req.user
-  res.render('pages/dashboard', {user: user})
+
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plans = await PlanServiceInstance.getAllByUserId(user.id)
+    res.render('pages/dashboard', {user: user, plans: plans})
+  }
+  catch (err) {
+    req.flash('error', 'Plans not found')
+    res.redirect('/dashboard')
+    return
+  }
 }
 
-exports.viewPlan = async (req, res) => {
+exports.viewPlanForm = (req, res) => {
   let flash = {
     message: req.flash('error'),
     type: 'warning',
@@ -17,10 +29,28 @@ exports.viewPlan = async (req, res) => {
 
 exports.viewPlanDetail = async (req, res) => {
   const user = req.user
+  const id = req.params.id
+  
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plan = await PlanServiceInstance.getById(id)
 
-  const { id } = req.params;
+    if (plan.user_id !== user.id) {
+      req.flash('error', 'Plan not found')
+      res.redirect('/dashboard')
+      return
+    }
 
-  res.render('pages/dashboard/plan-detail.ejs', {user: user, id: id})
+    plan.duration_hour = Math.floor(plan.duration / 60)
+    plan.duration_minute = plan.duration % 60;
+
+    res.render('pages/dashboard/plan-detail.ejs', {user: user, plan: plan})
+  }
+  catch (err) {
+    req.flash('error', 'Plan not found')
+    res.redirect('/dashboard')
+    return
+  }
 }
 
 exports.viewSchedule = async (req, res) => {
@@ -35,7 +65,7 @@ exports.viewHistory = async (req, res) => {
   res.render('pages/dashboard/history.ejs', {user: user})
 }
 
-exports.viewPackage = async (req, res) => {
+exports.viewPackage = (req, res) => {
   const user = req.user
 
   res.render('pages/dashboard/package.ejs', {user: user})
@@ -54,22 +84,27 @@ exports.createPlan = async (req, res) => {
     difficulty
   } = req.body
 
-  const user = req.user
-
   const duration = parseInt(duration_hour) * 60 + parseInt(duration_minute)
   
   const plan = {
     title: title,
     description: description,
-    duration_hour: duration_hour,
-    duration_minute: duration_minute,
+    duration: duration,
     deadline: deadline,
-    life_impact: life_impact,
-    people_impact: people_impact,
-    activity_impact: activity_impact,
-    difficulty: difficulty
+    life_impact: parseInt(life_impact),
+    people_impact: parseInt(people_impact),
+    activity_impact: parseInt(activity_impact),
+    difficulty: parseInt(difficulty)
   }
 
-  // res.redirect('/dashboard/plan/1')
-  res.render('pages/dashboard/plan-detail.ejs', {user: user, plan: plan})
+  const PlanServiceInstance = new PlanService()
+  try {
+    const newPlan = await PlanServiceInstance.create(plan, req.user.id)
+    res.redirect('/dashboard/plan/' + newPlan.id)
+  }
+  catch (err) {
+    req.flash('error', 'Plan not created')
+    res.redirect('/dashboard/plan')
+    return
+  }
 }

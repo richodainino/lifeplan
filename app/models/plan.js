@@ -5,6 +5,14 @@ const plans = (sequelize, Sequelize) => {
       primaryKey: true,
       autoIncrement: true
     },
+    user_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'users',
+        key: 'id'
+      }
+    },
     title: {
       type: Sequelize.STRING,
       allowNull: false,

@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const {
   viewDashboard,
-  viewPlan,
+  viewPlanForm,
   viewPlanDetail,
   viewSchedule,
   viewHistory,
@@ -14,7 +14,7 @@ router.route('/')
   .get(viewDashboard)
 
 router.route('/plan')
-  .get(viewPlan)
+  .get(viewPlanForm)
   .post(createPlan)
 
 router.route('/plan/:id')

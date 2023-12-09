@@ -18,19 +18,18 @@
               <h2 class="text-xl text-center">27 November 2023</h2>
             </div>
             <div class="rounded-box glass p-5 ">
-              <!-- <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to make new plan</h2> -->
-              <h2 class="text-xl font-semibold text-center">Upcoming Plan</h2>
-              <ol class="menu rounded-box">
-                <li class="text-lg"><a href="">
-                  1. Make Life Plan website
-                </a></li>
-                <li class="text-lg"><a href="">
-                  2. Make a reservation for karaoke date
-                </a></li>
-                <li class="text-lg"><a href="">
-                  3. Wash Oyen and Cimi
-                </a></li>
-              </ol>
+              <% if (plans.length === 0) { %>
+                <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to make new plan</h2>
+              <% } else { %>
+                <h2 class="text-xl font-semibold text-center">Upcoming Plan</h2>
+                <ol class="menu rounded-box">
+                  <% for (let i = 0; i < plans.length; i++) { %>
+                    <li class="text-lg"><a href="/dashboard/plan/<%= plans[i].id %>">
+                      <%= i+1 %>. <%= plans[i].title %>
+                    </a></li>
+                  <% } %>
+                </ol>
+              <% } %>
             </div>
           </div>
 
