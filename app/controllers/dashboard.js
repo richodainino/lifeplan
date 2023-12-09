@@ -2,10 +2,11 @@ const PlanService = require('../services/plan')
 
 exports.viewDashboard = async (req, res) => {
   const user = req.user
+  const date = new Date()
 
   const PlanServiceInstance = new PlanService()
   try {
-    const plans = await PlanServiceInstance.getAllByUserId(user.id)
+    const plans = await PlanServiceInstance.getAllByUserIdByDeadlineDate(user.id, date)
     res.render('pages/dashboard', {user: user, plans: plans})
   }
   catch (err) {
@@ -62,7 +63,17 @@ exports.viewSchedule = async (req, res) => {
 exports.viewHistory = async (req, res) => {
   const user = req.user
 
-  res.render('pages/dashboard/history.ejs', {user: user})
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plans = await PlanServiceInstance.getAllByUserIdWithDirection(user.id, 'DESC')
+    const plansDate = await PlanServiceInstance.getAllDateByUserIdWithDirectionGroupByCreatedAt(user.id, 'DESC')
+    res.render('pages/dashboard/history.ejs', {user: user, plans: plans, plansDate: plansDate})
+  }
+  catch (err) {
+    req.flash('error', 'Plans not found')
+    res.redirect('/dashboard')
+    return
+  }
 }
 
 exports.viewPackage = (req, res) => {

@@ -14,6 +14,7 @@ const db = {}
 
 db.Sequelize = Sequelize
 db.sequelize = sequelize
+db.Op = Sequelize.Op
 
 db.users = require('./user')(sequelize, Sequelize)
 db.plans = require('./plan')(sequelize, Sequelize)
