@@ -4,10 +4,13 @@ const {
   viewDashboard,
   viewPlanForm,
   viewPlanDetail,
+  viewPlanEdit,
   viewSchedule,
   viewHistory,
   viewPackage,
-  createPlan
+  createPlan,
+  updatePlan,
+  deletePlan
 } = require('../controllers/dashboard')
 
 router.route('/')
@@ -19,8 +22,13 @@ router.route('/plan')
 
 router.route('/plan/:id')
   .get(viewPlanDetail)
-  // .put(updatePlan)
-  // .delete(deletePlan)
+  
+router.route('/plan/:id/edit')
+  .get(viewPlanEdit)
+  .post(updatePlan)
+
+router.route('/plan/:id/delete')
+  .get(deletePlan)
 
 router.route('/schedule')
   .get(viewSchedule)

@@ -48,7 +48,10 @@ const plans = (sequelize, Sequelize) => {
       type: Sequelize.FLOAT,
     },
     createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE
+    updatedAt: Sequelize.DATE,
+    deletedAt: Sequelize.DATE
+  }, {
+    paranoid: true
   })
 
   return Plans

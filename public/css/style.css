@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn-primary, .bg-primary{
+.btn-primary, .bg-primary, .btn-error {
   @apply text-white;
 }

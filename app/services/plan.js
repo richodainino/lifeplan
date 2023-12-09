@@ -57,15 +57,15 @@ class PlanService {
     return plansDate
   }
 
-  async update (plan) {
-    const updatedPlan = await this.planRepo.update(plan)
+  async updateById (plan, id) {
+    const updatedPlan = await this.planRepo.updateById(plan, id)
     if (!updatedPlan) throw new Error('Plan not updated')
 
     return updatedPlan
   }
 
-  async delete (id) {
-    const deletedPlan = await this.planRepo.delete(id)
+  async deleteById (id) {
+    const deletedPlan = await this.planRepo.deleteById(id)
     if (!deletedPlan) throw new Error('Plan not deleted')
 
     return deletedPlan

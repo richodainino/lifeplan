@@ -85,9 +85,9 @@ class PlanRepository {
     }
   }
 
-  async update (plan) {
+  async updateById (plan, id) {
     try {
-      const updatedPlan = await this.planModel.update(plan, { where: { id: plan.id } })
+      const updatedPlan = await this.planModel.update(plan, { where: { id: id } })
       return updatedPlan
     }
     catch (err) {
@@ -96,7 +96,7 @@ class PlanRepository {
     }
   }
 
-  async delete (id) {
+  async deleteById (id) {
     try {
       const deletedPlan = await this.planModel.destroy({ where: { id: id } })
       return deletedPlan

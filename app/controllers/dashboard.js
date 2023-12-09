@@ -25,7 +25,7 @@ exports.viewPlanForm = (req, res) => {
 
   const user = req.user
 
-  res.render('pages/dashboard/plan.ejs', {user: user, flash: flash})
+  res.render('pages/dashboard/create-plan.ejs', {user: user, flash: flash})
 }
 
 exports.viewPlanDetail = async (req, res) => {
@@ -43,9 +43,42 @@ exports.viewPlanDetail = async (req, res) => {
     }
 
     plan.duration_hour = Math.floor(plan.duration / 60)
-    plan.duration_minute = plan.duration % 60;
+    plan.duration_minute = plan.duration % 60
 
     res.render('pages/dashboard/plan-detail.ejs', {user: user, plan: plan})
+  }
+  catch (err) {
+    req.flash('error', 'Plan not found')
+    res.redirect('/dashboard')
+    return
+  }
+}
+
+exports.viewPlanEdit = async (req, res) => {
+  const user = req.user
+  const id = req.params.id
+
+  let flash = {
+    message: req.flash('error'),
+    type: 'warning',
+  }
+  if (flash.message.length === 0) flash = null
+  
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plan = await PlanServiceInstance.getById(id)
+
+    if (plan.user_id !== user.id) {
+      req.flash('error', 'Plan not found')
+      res.redirect('/dashboard')
+      return
+    }
+
+    plan.duration_hour = Math.floor(plan.duration / 60)
+    plan.duration_minute = plan.duration % 60
+    plan.deadline_formatted = plan.deadline.toISOString().split('T')[0]
+
+    res.render('pages/dashboard/edit-plan.ejs', {user: user, plan: plan, flash: flash})
   }
   catch (err) {
     req.flash('error', 'Plan not found')
@@ -116,6 +149,57 @@ exports.createPlan = async (req, res) => {
   catch (err) {
     req.flash('error', 'Plan not created')
     res.redirect('/dashboard/plan')
+    return
+  }
+}
+
+exports.updatePlan = async (req, res) => {
+  const { 
+    title,
+    description,
+    'duration-hour': duration_hour,
+    'duration-minute': duration_minute,
+    deadline,
+    'life-impact': life_impact,
+    'people-impact': people_impact,
+    'activity-impact': activity_impact,
+    difficulty
+  } = req.body
+
+  const duration = parseInt(duration_hour) * 60 + parseInt(duration_minute)
+  
+  const plan = {
+    title: title,
+    description: description,
+    duration: duration,
+    deadline: deadline,
+    life_impact: parseInt(life_impact),
+    people_impact: parseInt(people_impact),
+    activity_impact: parseInt(activity_impact),
+    difficulty: parseInt(difficulty)
+  }
+
+  const PlanServiceInstance = new PlanService()
+  try {
+    const updatedPlan = await PlanServiceInstance.updateById(plan, req.params.id)
+    res.redirect('/dashboard/plan/' + req.params.id)
+  }
+  catch (err) {
+    req.flash('error', 'Plan not updated')
+    res.redirect('/dashboard/plan/' + req.params.id + '/edit')
+    return
+  }
+}
+
+exports.deletePlan = async (req, res) => {
+  const PlanServiceInstance = new PlanService()
+  try {
+    const deletedPlan = await PlanServiceInstance.deleteById(req.params.id)
+    res.redirect('/dashboard')
+  }
+  catch (err) {
+    req.flash('error', 'Plan not deleted')
+    res.redirect('/dashboard/plan/' + req.params.id)
     return
   }
 }
