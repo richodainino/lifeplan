@@ -76,13 +76,15 @@
                   </label>
                   <div class="px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg">
                     <% 
-                      const deadline = new Date(plan.deadline)
-                      const deadlineDate = deadline.getDate()
-                      const deadlineMonth = deadline.toLocaleString('default', { month: 'long' })
-                      const deadlineYear = deadline.getFullYear()
-                      const deadlineString = deadlineDate + ' ' + deadlineMonth + ' ' + deadlineYear
+                      const deadline = new Date(plan.deadline).toLocaleString('en-AU', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric', 
+                        hour: 'numeric', 
+                        minute: 'numeric', 
+                        hour12: false });
                     %>
-                    <p><%= deadlineString %></p>
+                    <p><%= deadline %></p>
                   </div>
                 </div>
               </div>

@@ -5,3 +5,33 @@
 .btn-primary, .bg-primary, .btn-error {
   @apply text-white;
 }
+
+.fc-toolbar-chunk {
+  .fc-button-primary {
+    @apply bg-primary border-primary;
+  }
+
+  .fc-button-primary:hover {
+    @apply bg-green-700 border-green-700;
+  }
+
+  .fc-button-primary:active {
+    @apply bg-green-800 border-green-800 !important;
+  }
+
+  .fc-button-primary:disabled {
+    @apply bg-green-900 border-green-900 !important;
+  }
+
+  .fc-button-active {
+    @apply bg-green-700 border-green-700 !important;
+  }
+
+  .fc-button-active:hover {
+    @apply bg-green-800 border-green-800 !important;
+  }
+}
+
+.collapse {
+  visibility: visible !important;
+}

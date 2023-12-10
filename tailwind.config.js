@@ -6,6 +6,7 @@ module.exports = {
       pattern: /alert-(warning|success|error|info)/,
     }
   ],
+  important: true,
   daisyui: {
     themes: [
       {

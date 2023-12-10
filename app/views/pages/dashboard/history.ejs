@@ -15,20 +15,21 @@
           <div class="card-body py-6">
             <h2 class="text-2xl text-center col-span-2">Plan History</h2>
             <div class="flex">
-              <% if (plans.length===0) { %>
+              <% if (plansGroupByDate.length===0) { %>
                 <h2 class="text-xl text-center">Click <a href="/dashboard/plan" class="font-semibold">Start Planning</a> to start making a plan</h2>
               <% } else { %>
                 <ul class="menu w-80">
                   <% 
                     let pi = 0
-                    plansDate.forEach(pDate => { 
+                    plansGroupByDate.forEach(pDate => { 
                   %>
                     <h2 class="menu-title"><%= pDate.dateFormatted %></h2>
                     <ul>
-                      <% for (let i = 0; i < pDate.count; i++ ) { %>
-                        <li><a href="/dashboard/plan/<%= plans[pi].id %>"><%= plans[pi].title %></a></li>
-                        <% pi++ %>
-                      <% } %>
+                      <% pDate.plans.forEach(plan => { %>
+                        <li class="menu-item">
+                          <a href="/dashboard/plan/<%= plan.id %>" class="menu-link"><%= plan.title %></a>
+                        </li>
+                      <% }) %>
                     </ul>
                   <% }) %>
                 </ul>

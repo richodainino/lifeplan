@@ -30,7 +30,19 @@ class PlanRepository {
     }
   }
 
-  async getAllByUserIdByDeadlineDate (user_id, date) {
+  async getAllByUserId (user_id) {
+    try {
+      const plansModel = await this.planModel.findAll({ where: { user_id: user_id } })
+      const plans = plansModel.map(el => el.get({ plain: true }))
+      return plans
+    }
+    catch (err) {
+      console.log("Repository plan getAllByUserId error: ", err)
+      return null
+    }
+  }
+
+  async getAllByUserIdAndDeadlineDate (user_id, date) {
     try {
       const plansModel = await this.planModel.findAll({ 
         where: {
@@ -45,7 +57,7 @@ class PlanRepository {
       return plans
     }
     catch (err) {
-      console.log("Repository plan getAllByUserIdByDeadlineDate error: ", err)
+      console.log("Repository plan getAllByUserIdAndDeadlineDate error: ", err)
       return null
     }
   }

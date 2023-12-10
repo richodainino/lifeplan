@@ -6,7 +6,7 @@ exports.viewDashboard = async (req, res) => {
 
   const PlanServiceInstance = new PlanService()
   try {
-    const plans = await PlanServiceInstance.getAllByUserIdByDeadlineDate(user.id, date)
+    const plans = await PlanServiceInstance.getAllByUserIdAndDeadlineDate(user.id, date)
     res.render('pages/dashboard', {user: user, plans: plans, date: date})
   }
   catch (err) {
@@ -76,7 +76,10 @@ exports.viewPlanEdit = async (req, res) => {
 
     plan.duration_hour = Math.floor(plan.duration / 60)
     plan.duration_minute = plan.duration % 60
-    plan.deadline_formatted = plan.deadline.toISOString().split('T')[0]
+
+    const deadlineWithAddedHours = plan.deadline
+    deadlineWithAddedHours.setHours(deadlineWithAddedHours.getHours() + 7)
+    plan.deadline_formatted = deadlineWithAddedHours.toISOString().slice(0, 16)
 
     res.render('pages/dashboard/edit-plan.ejs', {user: user, plan: plan, flash: flash})
   }
@@ -90,7 +93,16 @@ exports.viewPlanEdit = async (req, res) => {
 exports.viewSchedule = async (req, res) => {
   const user = req.user
 
-  res.render('pages/dashboard/schedule.ejs', {user: user})
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plans = await PlanServiceInstance.getAllByUserIdCalendarFormatted(user.id)
+    res.render('pages/dashboard/schedule.ejs', {user: user, plans: plans})
+  }
+  catch (err) {
+    req.flash('error', 'Plans not found')
+    res.redirect('/dashboard')
+    return
+  }
 }
 
 exports.viewHistory = async (req, res) => {
@@ -98,9 +110,8 @@ exports.viewHistory = async (req, res) => {
 
   const PlanServiceInstance = new PlanService()
   try {
-    const plans = await PlanServiceInstance.getAllByUserIdWithDirection(user.id, 'DESC')
-    const plansDate = await PlanServiceInstance.getAllDateByUserIdWithDirectionGroupByCreatedAt(user.id, 'DESC')
-    res.render('pages/dashboard/history.ejs', {user: user, plans: plans, plansDate: plansDate})
+    const plansGroupByDate = await PlanServiceInstance.getAllByUserIdWithDirectionGroupByCreatedAt(user.id, 'DESC')
+    res.render('pages/dashboard/history.ejs', {user: user, plansGroupByDate: plansGroupByDate})
   }
   catch (err) {
     req.flash('error', 'Plans not found')

@@ -27,34 +27,49 @@ class PlanService {
 
     return plan
   }
+  
+  async getAllByUserIdCalendarFormatted (user_id) {
+    const plansObject = await this.planRepo.getAllByUserId(user_id)
+    if (!plansObject) throw new Error('Plans not found')
 
-  async getAllByUserIdByDeadlineDate (user_id, date) {
-    const plans = await this.planRepo.getAllByUserIdByDeadlineDate(user_id, date)
+    let plansFormatted = []
+    plansObject.forEach(el => {
+      plansFormatted.push({
+        start : new Date(el.deadline),
+        title : el.title,
+        url : '/dashboard/plan/' + el.id
+      })
+    })
+
+    return plansFormatted
+  }
+
+  async getAllByUserIdAndDeadlineDate (user_id, date) {
+    const plans = await this.planRepo.getAllByUserIdAndDeadlineDate(user_id, date)
     if (!plans) throw new Error('Plans not found')
 
     return plans
-  }
+  }  
 
-  async getAllByUserIdWithDirection (user_id, orderDirection) {
+  async getAllByUserIdWithDirectionGroupByCreatedAt (user_id, orderDirection) {
     const plans = await this.planRepo.getAllByUserIdWithDirection(user_id, orderDirection)
     if (!plans) throw new Error('Plans not found')
 
-    return plans
-  }
+    let plansGroupByDate = await this.planRepo.getAllDateByUserIdWithDirectionGroupByCreatedAt(user_id, orderDirection)
+    if (!plansGroupByDate) throw new Error('Plans date not found')
 
-  async getAllDateByUserIdWithDirectionGroupByCreatedAt (user_id, orderDirection) {
-    let plansDate = await this.planRepo.getAllDateByUserIdWithDirectionGroupByCreatedAt(user_id, orderDirection)
-    if (!plansDate) throw new Error('Plans not found')
-
-    plansDate.forEach(el => {
+    plansGroupByDate.forEach(el => {
       const createdAt = new Date(el.date)
+      
       const createdAtDate = createdAt.getDate()
       const createdAtMonth = createdAt.toLocaleString('default', { month: 'long' })
       const createdAtYear = createdAt.getFullYear()
       el.dateFormatted = createdAtDate + ' ' + createdAtMonth + ' ' + createdAtYear
+
+      el.plans = plans.filter(plan => plan.createdAt.toISOString().split('T')[0] === createdAt.toISOString().split('T')[0])
     })
 
-    return plansDate
+    return plansGroupByDate
   }
 
   async updateById (plan, id) {
