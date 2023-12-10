@@ -11,10 +11,14 @@
           <li><a href="/dashboard" class="text-base">Dashboard</a></li>
           <li><a href="/dashboard/plan" class="text-base">Start Planning</a></li>
           <li><a href="/dashboard/schedule" class="text-base">Schedule</a></li>
-          <li><a href="/dashboard/history" class="text-base">History</a></li>
-          <li><a href="/dashboard/Package" class="text-base">Package</a></li>
 
-          <li><a href="/try-premium" class="text-base text-primary font-bold">Try Premium</a></li>
+          <% if (user.role==='free' ) { %>
+          <li><a href="/dashboard/history" class="text-base text-gray-400">History</a></li>
+            <li><a href="/premium" class="text-base text-primary font-bold">Upgrade Premium</a></li>
+          <% } else if (user.role==='premium' ) { %>
+          <li><a href="/dashboard/history" class="text-base">History</a></li>
+            <li><a href="/dashboard/package" class="text-base">Package</a></li>
+          <% } %>
         </ul>
       </div>
       <a href="/"><img src="/images/life-plan-logo.png" class="h-14"></a>
@@ -24,13 +28,14 @@
         <li><a href="/dashboard" class="text-base">Dashboard</a></li>
         <li><a href="/dashboard/plan" class="text-base">Start Planning</a></li>
         <li><a href="/dashboard/schedule" class="text-base">Schedule</a></li>
-        <li><a href="/dashboard/history" class="text-base">History</a></li>
-        <li><a href="/dashboard/Package" class="text-base">Package</a></li>
         
-        <!-- TODO: Uncomment later -->
-        <% //if (user.role === 'free') { %>
-          <li><a href="/try-premium" class="text-base text-primary font-bold">Try Premium</a></li>
-        <% //} %>
+        <% if (user.role==='free' ) { %>
+          <li><a href="/dashboard/history" class="text-base text-gray-400">History</a></li>
+          <li><a href="/premium" class="text-base text-primary font-bold">Upgrade Premium</a></li>
+        <% } else if (user.role==='premium' ) { %>
+          <li><a href="/dashboard/history" class="text-base">History</a></li>
+          <li><a href="/dashboard/package" class="text-base">Package</a></li>
+        <% } %>
       </ul>
     </div>
     <div class="navbar-end">

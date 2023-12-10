@@ -107,6 +107,10 @@ exports.viewSchedule = async (req, res) => {
 
 exports.viewHistory = async (req, res) => {
   const user = req.user
+  if (user.role !== 'premium') {
+    res.redirect('/premium')
+    return
+  }
 
   const PlanServiceInstance = new PlanService()
   try {
@@ -122,6 +126,10 @@ exports.viewHistory = async (req, res) => {
 
 exports.viewPackage = (req, res) => {
   const user = req.user
+  if (user.role !== 'premium') {
+    res.redirect('/premium')
+    return
+  }
 
   res.render('pages/dashboard/package.ejs', {user: user})
 }

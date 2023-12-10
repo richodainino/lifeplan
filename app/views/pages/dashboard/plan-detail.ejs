@@ -10,7 +10,27 @@
   <main>
     <div class="hero min-h-[calc(100vh-4rem)] bg-gradient-to-r from-primary to-secondary">
       <div class="hero-overlay opacity-25 bg-center bg-cover bg-fixed" style="background-image: url(/images/planning-bg.png);"></div>
-      <div class="hero-content flex-row px-12 py-16">
+      
+      <% if (user.role==='free' ) { %>
+        <div class="hero-content flex-col px-12 py-16 pt-28">
+      <% } else { %>
+        <div class="hero-content flex-col px-12 py-16">
+      <% } %>
+
+        <% if (user.role==='free' ) { %>
+          <div class="absolute left-0 w-1/6 top-auto bg-white text-center p-2">
+            <%- include('../../partials/ads/side-3.ejs') %>
+          </div>
+
+          <div class="absolute right-0 w-1/5 top-auto">
+            <%- include('../../partials/ads/side.ejs') %>
+          </div>
+
+          <div class="absolute top-20">
+            <%- include('../../partials/ads/top.ejs') %>
+          </div>
+        <% } %>
+
         <div class="card shrink-0 shadow-2xl bg-white">
           <div class="card-body py-6 w-[38rem]">
             <div class="flex align-middle">

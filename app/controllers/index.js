@@ -3,5 +3,11 @@ exports.viewIndex = async (req, res) => {
 }
 
 exports.viewTryPremium = async (req, res) => {
-  res.render('pages/try-premium.ejs')
+  const user = req.user
+  if (user && user.role === 'premium') {
+    res.redirect('/dashboard/package')
+    return
+  }
+
+  res.render('pages/premium.ejs', {user: user})
 }

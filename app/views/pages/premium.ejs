@@ -2,12 +2,16 @@
 <html lang="en">
 
 <head>
-  <%- include('../partials/head'); %>
+  <%- include('../partials/head') %>
 </head>
 
 <body>
 
-  <%- include('../partials/header-default.ejs') %>
+  <% if (user) { %>
+    <%- include('../partials/header-login.ejs') %>
+  <% } else { %>
+    <%- include('../partials/header-default.ejs') %>
+  <% } %>
 
     <main>
       <!-- Hero -->
@@ -73,9 +77,9 @@
                         <span class="text-5xl font-bold tracking-tight text-gray-900">50.000</span>
                         <span class="text-sm font-semibold leading-6 tracking-wide text-gray-600">/month</span>
                       </p>
-                      <a href="https://shopee.co.id/shopee"
-                        class="mt-6 block w-full rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">Get
-                        access</a>
+                      <a href="<%= user ? 'https://tokopedia.link/CWYcGUcVpFb' : '/login' %>" target="_blank"
+                        class="mt-6 block w-full rounded-md bg-primary px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                        Get access</a>
                     </div>
                   </div>
                 </div>

@@ -15,7 +15,7 @@ const isLoggedIn = (req, res, next) => {
 }
 
 router.route('/').get(viewIndex)
-router.route('/try-premium').get(viewTryPremium)
+router.route('/premium').get(viewTryPremium)
 
 router.route('/login').all(authRoutes)
 router.route('/register').all(authRoutes)
