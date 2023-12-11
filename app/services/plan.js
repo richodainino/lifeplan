@@ -49,7 +49,14 @@ class PlanService {
     if (!plans) throw new Error('Plans not found')
 
     return plans
-  }  
+  }
+
+  async getAllByUserIdAndCreatedDate (user_id, date) {
+    const plans = await this.planRepo.getAllByUserIdAndCreatedDate(user_id, date)
+    if (!plans) throw new Error('Plans not found')
+
+    return plans
+  }
 
   async getAllByUserIdWithDirectionGroupByCreatedAt (user_id, orderDirection) {
     const plans = await this.planRepo.getAllByUserIdWithDirection(user_id, orderDirection)
@@ -60,7 +67,6 @@ class PlanService {
 
     plansGroupByDate.forEach(el => {
       const createdAt = new Date(el.date)
-      
       const createdAtDate = createdAt.getDate()
       const createdAtMonth = createdAt.toLocaleString('default', { month: 'long' })
       const createdAtYear = createdAt.getFullYear()

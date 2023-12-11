@@ -1,22 +1,29 @@
 const PlanService = require('../services/plan')
 
 exports.viewDashboard = async (req, res) => {
+  let flash = {
+    message: req.flash('error'),
+    type: 'warning',
+    shape: 'rounded',
+  }
+  if (flash.message.length === 0) flash = null
+
   const user = req.user
-  const date = new Date()
+  const today = new Date()
 
   const PlanServiceInstance = new PlanService()
   try {
-    const plans = await PlanServiceInstance.getAllByUserIdAndDeadlineDate(user.id, date)
-    res.render('pages/dashboard', {user: user, plans: plans, date: date})
+    const plans = await PlanServiceInstance.getAllByUserIdAndDeadlineDate(user.id, today)
+    res.render('pages/dashboard', {user: user, plans: plans, date: today, flash: flash})
   }
   catch (err) {
     req.flash('error', 'Plans not found')
-    res.redirect('/dashboard')
+    res.redirect('/')
     return
   }
 }
 
-exports.viewPlanForm = (req, res) => {
+exports.viewPlanForm = async (req, res) => {
   let flash = {
     message: req.flash('error'),
     type: 'warning',
@@ -24,8 +31,25 @@ exports.viewPlanForm = (req, res) => {
   if (flash.message.length === 0) flash = null
 
   const user = req.user
+  const today = new Date()
 
-  res.render('pages/dashboard/create-plan.ejs', {user: user, flash: flash})
+  const PlanServiceInstance = new PlanService()
+  try {
+    const plans = await PlanServiceInstance.getAllByUserIdAndCreatedDate(user.id, today)
+
+    if (user.role === 'free' && plans.length >= 4) {
+      req.flash('error', 'You have exceeded the limit of creating 5 plans today')
+      res.redirect('/dashboard')
+      return
+    }
+
+    res.render('pages/dashboard/create-plan.ejs', {user: user, flash: flash})
+  }
+  catch (err) {
+    req.flash('error', 'Plan not found')
+    res.redirect('/dashboard')
+    return
+  }
 }
 
 exports.viewPlanDetail = async (req, res) => {

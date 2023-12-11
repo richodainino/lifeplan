@@ -62,6 +62,26 @@ class PlanRepository {
     }
   }
 
+  async getAllByUserIdAndCreatedDate (user_id, date) {
+    try {
+      const plansModel = await this.planModel.findAll({ 
+        where: {
+          user_id: user_id,
+          createdAt: {
+            [Op.gte]: date.setHours(0,0,0,0),
+            [Op.lte]: date.setHours(23,59,59,999)
+          }
+        }
+      })
+      const plans = plansModel.map(el => el.get({ plain: true }))
+      return plans
+    }
+    catch (err) {
+      console.log("Repository plan getAllByUserIdAndCreatedDate error: ", err)
+      return null
+    }
+  }
+
   async getAllByUserIdWithDirection (user_id, orderDirection) {
     try {
       const plansModel = await this.planModel.findAll({ 
